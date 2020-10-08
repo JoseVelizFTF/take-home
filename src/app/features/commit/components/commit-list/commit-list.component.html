@@ -1,4 +1,12 @@
  <!-- List of commits -->
  <ul class="list-group my-5">
-   <app-commit-item *ngFor="let commit of commits | async" [commitItem]="commit"></app-commit-item>
+   <span>Hola</span>
+   <li class="list-group my-5">
+     <app-commit-item *ngFor="let commit of commits | async" [commitItem]="commit"></app-commit-item>
+   </li>
+
+   <span>2</span>
+   <li class="list-group my-5">
+     <app-commit-item *ngFor="let commit of commits | async" [commitItem]="commit"></app-commit-item>
+   </li>
  </ul>
