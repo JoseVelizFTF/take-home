@@ -12,7 +12,7 @@ import { COMMITS } from './mock-commits';
   providedIn: 'root',
 })
 export class CommitListService {
-  isMock = true;
+  isMock = false;
 
   baseUrl = environment.baseUrl;
   projectName: string = 'take-home';
