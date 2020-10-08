@@ -43,9 +43,4 @@ export class CommitListService {
       );
     }
   }
-  // {
-  //   //Observable<Commit[]>
-  //   //...
-  //   // return this.getCommitUrl(this.lastCommitSha).pipe(expand((response) => {}));
-  // }
 }
