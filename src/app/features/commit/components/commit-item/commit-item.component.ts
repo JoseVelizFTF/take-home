@@ -10,5 +10,9 @@ export class CommitItemComponent implements OnInit {
   @Input() commitItem: Commit;
   constructor() {}
 
+  getProjectInTimeUrl(sha: string) {
+    return `https://github.com/JoseVelizFTF/take-home/tree/${sha}`;
+  }
+
   ngOnInit(): void {}
 }

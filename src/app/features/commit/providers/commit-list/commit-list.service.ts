@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from './../../../../../environments/environment';
 import { Commit } from '../../models/commit';
-import { Observable, empty, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { expand, map, reduce } from 'rxjs/operators';
 
 import { COMMITS } from './mock-commits';
@@ -34,7 +34,7 @@ export class CommitListService {
         expand((response: any) =>
           response.parents.length > 0
             ? this.getCommitUrl(response.parents[0].sha)
-            : empty()
+            : of()
         ),
         map((res) => res),
         // if you want the observable to emit 1 value everytime that
