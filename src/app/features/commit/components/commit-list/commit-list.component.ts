@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Commit } from '../../models/commit';
+import { Commit, CommitList } from '../../models/commit';
 import { CommitListService } from '../../providers/commit-list/commit-list.service';
 @Component({
   selector: 'app-commit-list',
@@ -8,11 +8,16 @@ import { CommitListService } from '../../providers/commit-list/commit-list.servi
   styleUrls: ['./commit-list.component.css'],
 })
 export class CommitListComponent implements OnInit {
-  commits: Observable<Commit[]>;
-
+  commitList: CommitList[] = [];
   constructor(private commitListService: CommitListService) {}
 
   ngOnInit(): void {
-    this.commits = this.commitListService.getCommits();
+    this.commitListService.getCommits().subscribe((commits) => {
+      this.commitListService
+        .getTransformedCommits(commits)
+        .subscribe((item) => {
+          this.commitList.push(item);
+        });
+    });
   }
 }

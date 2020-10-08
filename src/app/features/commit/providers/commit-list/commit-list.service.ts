@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from './../../../../../environments/environment';
-import { Commit } from '../../models/commit';
+import { Commit, CommitList } from '../../models/commit';
 import { Observable, of } from 'rxjs';
-import { expand, map, reduce } from 'rxjs/operators';
+import { expand, groupBy, map, mergeMap, reduce, tap } from 'rxjs/operators';
 
 import { COMMITS } from './mock-commits';
 
@@ -17,7 +17,7 @@ export class CommitListService {
   baseUrl = environment.baseUrl;
   projectName: string = 'take-home';
   userName: string = 'JoseVelizFTF';
-  lastCommitSha: string = 'c4dbca83565acbefce6ccc78407888089187cf75';
+  lastCommitSha: string = '7d09189677dfcaaad0afa77f76e0e648138f6a34';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -26,7 +26,28 @@ export class CommitListService {
     return this.httpClient.get(generatedUrl);
   };
 
-  getCommits(): Observable<any[]> {
+  getTransformedCommits(commits: Commit[]): Observable<CommitList> {
+    return of(...commits).pipe(
+      map((commit: any) => ({
+        ...commit,
+        id: new Date(commit.committer.date).toLocaleDateString(),
+      })),
+      groupBy((p) => p.id),
+      mergeMap((group$) =>
+        group$.pipe(
+          reduce((acc, cur) => [...acc, cur], [`${group$.key}`]),
+          map(
+            ([id, ...values]): CommitList => ({
+              id,
+              values,
+            })
+          )
+        )
+      )
+    );
+  }
+
+  getCommits(): Observable<Commit[]> {
     if (this.isMock) {
       return of(COMMITS);
     } else {

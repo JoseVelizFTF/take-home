@@ -1,3 +1,8 @@
+export interface CommitList {
+  id: string;
+  values: Commit[];
+}
+
 export interface Commit {
   sha: string;
   url: string;
