@@ -17,7 +17,7 @@ export class CommitListService {
   baseUrl = environment.baseUrl;
   projectName: string = 'take-home';
   userName: string = 'JoseVelizFTF';
-  lastCommitSha: string = 'f4fc64200f6522a072a5a4dbe6ff1ab9109aa5b6';
+  lastCommitSha: string = '7d09189677dfcaaad0afa77f76e0e648138f6a34';
 
   constructor(private httpClient: HttpClient) {}
 
