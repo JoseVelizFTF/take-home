@@ -11,6 +11,16 @@ export class CommitListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.commits = [];
+    this.commits = [
+      {
+        sha: 'string',
+        parents: [],
+        commiter: {
+          name: 'string',
+          email: 'string',
+          data: 'string',
+        },
+      },
+    ];
   }
 }

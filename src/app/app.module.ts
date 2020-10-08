@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CommitListComponent } from './features/commit/components/commit-list/commit-list.component';
+import { CommitModule } from './features/commit/commit.module';
 
 @NgModule({
-  declarations: [AppComponent, CommitListComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, CommitModule],
   providers: [],
   bootstrap: [AppComponent],
 })

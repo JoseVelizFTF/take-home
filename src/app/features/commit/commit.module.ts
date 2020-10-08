@@ -9,5 +9,6 @@ import { CommitItemComponent } from './components/commit-item/commit-item.compon
 @NgModule({
   declarations: [CommitListComponent, CommitItemComponent],
   imports: [CommonModule, CommitRoutingModule, HttpClientModule],
+  exports: [CommitListComponent],
 })
 export class CommitModule {}
