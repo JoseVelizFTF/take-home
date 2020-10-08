@@ -1,26 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Commit } from '../../models/Commit';
+import { Observable } from 'rxjs';
+import { Commit } from '../../models/commit';
+import { CommitListService } from '../../providers/commit-list/commit-list.service';
 @Component({
   selector: 'app-commit-list',
   templateUrl: './commit-list.component.html',
   styleUrls: ['./commit-list.component.css'],
 })
 export class CommitListComponent implements OnInit {
-  commits: Commit[];
+  commits: Observable<Commit[]>;
 
-  constructor() {}
+  constructor(private commitListService: CommitListService) {}
 
   ngOnInit(): void {
-    this.commits = [
-      {
-        sha: 'string',
-        parents: [],
-        commiter: {
-          name: 'string',
-          email: 'string',
-          data: 'string',
-        },
-      },
-    ];
+    this.commits = this.commitListService.getCommits();
   }
 }
