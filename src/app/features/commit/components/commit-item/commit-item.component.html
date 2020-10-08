@@ -1,10 +1,17 @@
 <!-- Commit item -->
 <li class="list-group-item list-group-item-action">
-  <h6 class="font-weight-bold">{{commitItem.message}}</h6>
-  <div class="d-flex align-items-center subtitle-text">
-    <img class="img-circle" src="https://avatars2.githubusercontent.com/u/68962423?s=60&v=4" alt="1" />
-    <span class="pl-2 font-weight-bold">{{commitItem.committer.name}}</span>
-    <span class="pl-1">committed on</span>
-    <span class="pl-1">{{commitItem.committer.date | date : "mediumDate"}}</span>
+  <div class="d-flex justify-content-between">
+    <div>
+      <h6 class="font-weight-bold">{{commitItem.message}}</h6>
+      <div class="d-flex align-items-center subtitle-text">
+        <img class="img-circle" src="https://avatars2.githubusercontent.com/u/68962423?s=60&v=4" alt="1" />
+        <span class="pl-2 font-weight-bold">{{commitItem.committer.name}}</span>
+        <span class="pl-1">committed on</span>
+        <span class="pl-1">{{commitItem.committer.date | date : "mediumDate"}}</span>
+      </div>
+    </div>
+    <div>
+      <a href={{commitItem.html_url}} class="btn btn-outline-secondary">{{commitItem.sha | slice:0:7}}</a>
+    </div>
   </div>
 </li>
